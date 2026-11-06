@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="CyberQuest Admin Dashboard">
+    <meta name="theme-color" content="#0f172a">
+
+    <title>CyberQuest | Admin Dashboard</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+    <script src="admin.js" defer></script>
+</head>
+
+<body>
+
+    <!-- LOGIN SECTION -->
+    <section id="admin-login" class="login-container">
+
+        <div class="login-box">
+
+            <div class="logo">
+                <span>⚡</span>
+                <h1>CyberQuest</h1>
+            </div>
+
+            <h2>Admin Portal</h2>
+
+            <p>Secure Administration Login</p>
+
+            <form id="login-form">
+
+                <label for="admin-email">Email Address</label>
+
+                <input
+                    type="email"
+                    id="admin-email"
+                    name="email"
+                    placeholder="admin@example.com"
+                    required
+                >
+
+                <label for="admin-password">Password</label>
+
+                <input
+                    type="password"
+                    id="admin-password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                >
+
+                <button type="submit" id="login-button">
+                    Login to Dashboard
+                </button>
+
+                <p id="login-error" role="alert"></p>
+
+            </form>
+
+            <a href="index.html" class="back-button">
+                ← Back to Quiz Website
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ADMIN DASHBOARD -->
+    <div id="admin-dashboard" hidden>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="sidebar-logo">
+                ⚡ CyberQuest
+            </div>
+
+            <div class="admin-profile">
+
+                <div class="profile-icon">👤</div>
+
+                <div>
+                    <h3 id="admin-name">Administrator</h3>
+                    <span id="admin-role">Admin</span>
+                </div>
+
+            </div>
+
+            <nav class="sidebar-nav">
+
+                <a href="#dashboard" class="nav-link active"
+                   data-section="dashboard">
+                    🏠 Dashboard
+                </a>
+
+                <a href="#candidates" class="nav-link"
+                   data-section="candidates">
+                    👥 Candidates
+                </a>
+
+                <a href="#questions" class="nav-link"
+                   data-section="questions">
+                    📝 Manage Questions
+                </a>
+
+                <a href="#results" class="nav-link"
+                   data-section="results">
+                    📊 Examination Results
+                </a>
+
+                <a href="#leaderboard" class="nav-link"
+                   data-section="leaderboard">
+                    🏆 Leaderboard
+                </a>
+
+                <a href="#certificates" class="nav-link"
+                   data-section="certificates">
+                    🎓 Certificates
+                </a>
+
+                <!-- SUPER ADMIN ONLY -->
+                <div id="super-admin-menu" hidden>
+
+                    <p class="menu-heading">OWNER CONTROLS</p>
+
+                    <a href="#admins" class="nav-link"
+                       data-section="admins">
+                        👑 Manage Admins
+                    </a>
+
+                    <a href="#settings" class="nav-link"
+                       data-section="settings">
+                        ⚙️ Website Settings
+                    </a>
+
+                    <a href="#security" class="nav-link"
+                       data-section="security">
+                        🔐 Security Settings
+                    </a>
+
+                </div>
+
+                <p class="menu-heading">GENERAL</p>
+
+                <a href="#reports" class="nav-link"
+                   data-section="reports">
+                    📁 Reports
+                </a>
+
+            </nav>
+
+            <button id="logout-button" class="logout-button">
+                🚪 Logout
+            </button>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <!-- TOP BAR -->
+            <header class="topbar">
+
+                <div>
+                    <h1 id="page-title">Dashboard</h1>
+                    <p>Welcome to CyberQuest Administration</p>
+                </div>
+
+                <div class="topbar-actions">
+
+                    <span class="online-status">
+                        ● System Active
+                    </span>
+
+                    <button id="theme-toggle" type="button">
+                        🌙
+                    </button>
+
+                </div>
+
+            </header>
+
+
+            <!-- DASHBOARD SECTION -->
+            <section id="section-dashboard" class="admin-section">
+
+                <h2>Dashboard Overview</h2>
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <span>👥</span>
+                        <h3>Total Candidates</h3>
+                        <p id="total-candidates">0</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <span>📝</span>
+                        <h3>Total Questions</h3>
+                        <p id="total-questions">45</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <span>🏆</span>
+                        <h3>Qualified Candidates</h3>
+                        <p id="qualified-candidates">0</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <span>❌</span>
+                        <h3>Not Qualified</h3>
+                        <p id="failed-candidates">0</p>
+                    </div>
+
+                </div>
+
+                <div class="dashboard-card">
+
+                    <h2>Recent Registrations</h2>
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>School</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="recent-candidates">
+
+                                <tr>
+                                    <td colspan="5">
+                                        No registrations available.
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- CANDIDATES SECTION -->
+            <section id="section-candidates"
+                     class="admin-section" hidden>
+
+                <h2>Candidate Management</h2>
+
+                <div class="toolbar">
+
+                    <input
+                        type="search"
+                        id="candidate-search"
+                        placeholder="Search candidates..."
+                    >
+
+                    <button id="export-candidates">
+                        📥 Export Excel
+                    </button>
+
+                </div>
+
+                <div class="dashboard-card table-container">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>School</th>
+                                <th>Age</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="candidate-list">
+
+                            <tr>
+                                <td colspan="7">
+                                    No candidates found.
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- QUESTIONS SECTION -->
+            <section id="section-questions"
+                     class="admin-section" hidden>
+
+                <h2>Question Management</h2>
+
+                <div class="toolbar">
+
+                    <select id="question-category">
+                        <option value="all">All Sections</option>
+                        <option value="mcq">MCQ</option>
+                        <option value="fill">Fill in the Blanks</option>
+                        <option value="truefalse">True / False</option>
+                        <option value="fullform">Full Forms</option>
+                        <option value="short">Short Questions</option>
+                    </select>
+
+                    <button id="add-question">
+                        + Add Question
+                    </button>
+
+                </div>
+
+                <div id="question-list"
+                     class="dashboard-card">
+
+                    <p>No questions loaded.</p>
+
+                </div>
+
+                <!-- ADD QUESTION FORM -->
+                <div id="question-modal" class="dashboard-card" hidden>
+
+                    <h3>Add New Question</h3>
+
+                    <form id="question-form">
+
+                        <label for="new-question">
+                            Question
+                        </label>
+
+                        <textarea
+                            id="new-question"
+                            required
+                        ></textarea>
+
+                        <label for="new-category">
+                            Category
+                        </label>
+
+                        <select id="new-category" required>
+                            <option value="mcq">MCQ</option>
+                            <option value="fill">Fill in the Blanks</option>
+                            <option value="truefalse">True / False</option>
+                            <option value="fullform">Full Forms</option>
+                            <option value="short">Short Questions</option>
+                        </select>
+
+                        <label for="new-answer">
+                            Correct Answer
+                        </label>
+
+                        <input
+                            type="text"
+                            id="new-answer"
+                            required
+                        >
+
+                        <label for="new-marks">
+                            Marks
+                        </label>
+
+                        <input
+                            type="number"
+                            id="new-marks"
+                            min="1"
+                            max="10"
+                            value="1"
+                            required
+                        >
+
+                        <button type="submit">
+                            Save Question
+                        </button>
+
+                        <button type="button" id="close-question-modal">
+                            Cancel
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+
+            <!-- RESULTS SECTION -->
+            <section id="section-results"
+                     class="admin-section" hidden>
+
+                <h2>Examination Results</h2>
+
+                <div class="toolbar">
+
+                    <input
+                        type="search"
+                        id="result-search"
+                        placeholder="Search results..."
+                    >
+
+                    <button id="export-results">
+                        📥 Download Results
+                    </button>
+
+                </div>
+
+                <div class="dashboard-card table-container">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Candidate</th>
+                                <th>Email</th>
+                                <th>Objective Marks</th>
+                                <th>Written Marks</th>
+                                <th>Total Marks</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="result-list">
+
+                            <tr>
+                                <td colspan="7">
+                                    No examination results available.
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- LEADERBOARD SECTION -->
+            <section id="section-leaderboard"
+                     class="admin-section" hidden>
+
+                <h2>🏆 Top 10 Candidates</h2>
+
+                <div class="dashboard-card table-container">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Candidate</th>
+                                <th>School</th>
+                                <th>Marks</th>
+                                <th>Percentage</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="leaderboard-list">
+
+                            <tr>
+                                <td colspan="5">
+                                    Leaderboard is empty.
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- CERTIFICATES SECTION -->
+            <section id="section-certificates"
+                     class="admin-section" hidden>
+
+                <h2>Certificate Management</h2>
+
+                <div class="dashboard-card">
+
+                    <h3>Generate Candidate Certificate</h3>
+
+                    <form id="certificate-form">
+
+                        <label for="certificate-candidate">
+                            Candidate Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="certificate-candidate"
+                            required
+                        >
+
+                        <label for="certificate-marks">
+                            Obtained Marks
+                        </label>
+
+                        <input
+                            type="number"
+                            id="certificate-marks"
+                            min="45"
+                            max="50"
+                            required
+                        >
+
+                        <button type="submit">
+                            🎓 Generate PDF Certificate
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+
+            <!-- ADMIN MANAGEMENT -->
+            <section id="section-admins"
+                     class="admin-section" hidden>
+
+                <h2>👑 Manage Administrators</h2>
+
+                <div class="dashboard-card">
+
+                    <h3>Create New Exam Admin</h3>
+
+                    <form id="create-admin-form">
+
+                        <label for="new-admin-name">
+                            Admin Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="new-admin-name"
+                            required
+                        >
+
+                        <label for="new-admin-email">
+                            Admin Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="new-admin-email"
+                            required
+                        >
+
+                        <label for="new-admin-password">
+                            Temporary Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="new-admin-password"
+                            minlength="8"
+                            required
+                        >
+
+                        <button type="submit">
+                            + Create Exam Admin
+                        </button>
+
+                    </form>
+
+                </div>
+
+                <div class="dashboard-card">
+
+                    <h3>Existing Administrators</h3>
+
+                    <div id="admin-list">
+                        No administrators loaded.
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- WEBSITE SETTINGS -->
+            <section id="section-settings"
+                     class="admin-section" hidden>
+
+                <h2>Website Settings</h2>
+
+                <div class="dashboard-card">
+
+                    <form id="settings-form">
+
+                        <label for="quiz-title">
+                            Quiz Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="quiz-title"
+                            value="CyberQuest – The Tech Quiz"
+                        >
+
+                        <label for="quiz-duration">
+                            Quiz Duration (Minutes)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="quiz-duration"
+                            value="60"
+                            min="1"
+                        >
+
+                        <label for="passing-marks">
+                            Passing Marks
+                        </label>
+
+                        <input
+                            type="number"
+                            id="passing-marks"
+                            value="45"
+                            min="0"
+                            max="50"
+                        >
+
+                        <label for="registration-status">
+                            Registration Status
+                        </label>
+
+                        <select id="registration-status">
+                            <option value="open">Open</option>
+                            <option value="closed">Closed</option>
+                        </select>
+
+                        <button type="submit">
+                            Save Settings
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+
+            <!-- SECURITY SETTINGS -->
+            <section id="section-security"
+                     class="admin-section" hidden>
+
+                <h2>Security Settings</h2>
+
+                <div class="dashboard-card">
+
+                    <h3>Security Overview</h3>
+
+                    <p>Administrator access control</p>
+
+                    <p>Role-based permissions</p>
+
+                    <p>Secure authentication</p>
+
+                    <p>Session management</p>
+
+                    <p>Login activity monitoring</p>
+
+                    <p class="security-warning">
+                        Security settings must be enforced
+                        by the backend server.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- REPORTS SECTION -->
+            <section id="section-reports"
+                     class="admin-section" hidden>
+
+                <h2>Reports & Analytics</h2>
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <h3>Total Attempts</h3>
+                        <p id="total-attempts">0</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>Average Marks</h3>
+                        <p id="average-marks">0</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>Pass Percentage</h3>
+                        <p id="pass-percentage">0%</p>
+                    </div>
+
+                </div>
+
+                <div class="dashboard-card">
+
+                    <h3>Download Reports</h3>
+
+                    <button id="download-report">
+                        📥 Download Report
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- FOOTER -->
+            <footer class="admin-footer">
+
+                <p>
+                    © 2026 CyberQuest Quiz Platform
+                </p>
+
+                <p>
+                    Secure Administration Portal
+                </p>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+</body>
+</html>

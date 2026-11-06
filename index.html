@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CyberQuest technology quiz and candidate registration form">
+    <meta name="theme-color" content="#111827">
+    <title>CyberQuest – The Tech Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="progress-container" role="progressbar"
+         aria-label="Quiz completion progress" aria-valuemin="0"
+         aria-valuemax="45" aria-valuenow="0"
+         style="position:fixed;top:0;left:0;width:100%;height:6px;background:rgba(255,255,255,.1);z-index:1001;">
+        <div id="progress-bar"
+             style="width:0%;height:100%;background:linear-gradient(90deg,#6366f1,#a855f7);transition:width .3s ease;"></div>
+    </div>
+
+    <header style="text-align:center;">
+        <h1>CyberQuest – The Tech Quiz</h1>
+        <p>Application dates: Please check the currently announced registration period.</p>
+        <p>Please provide your correct name and email address. Quiz duration: 60 minutes.
+           Review your answers before submitting.</p>
+        <div id="timer" role="timer" aria-live="off">Time Left: 60:00</div>
+        <div id="question-counter" style="margin-top:10px;font-weight:bold;color:#38bdf8;">
+            Questions Answered: 0 / 45
+        </div>
+    </header>
+
+    <main>
+        <h2>Candidate Instructions</h2>
+        <p>Answer all 45 questions. The quiz is worth 50 marks in total.
+           You need at least 45 marks to meet the stated qualification requirement.</p>
+        <p>Successful candidates may learn the following subjects:</p>
+        <ol>
+            <li>Web Development
+                <ol>
+                    <li>HTML, CSS, JavaScript, React.js, Node.js and Backend Development</li>
+                </ol>
+            </li>
+            <li>Android Application Development
+                <ol>
+                    <li>Java, Python and PHP</li>
+                </ol>
+            </li>
+        </ol>
+    </main>
+
+    <form id="answersheet" action="#" method="post">
+        <fieldset>
+            <legend>Candidate Registration</legend>
+
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" autocomplete="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email"
+                   placeholder="example@gmail.com" autocomplete="email" required>
+
+            <label for="school">School/College Name</label>
+            <input type="text" id="school" name="school" required>
+
+            <label for="address">Address</label>
+            <textarea name="address" id="address" rows="2" required></textarea>
+
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" min="15" max="35" required>
+
+            <label for="phone">Phone Number (10 digits)</label>
+            <input type="tel" name="phone" id="phone"
+                   pattern="[0-9]{10}" maxlength="10"
+                   placeholder="e.g. 9876543210" required>
+
+            <label for="date">Date</label>
+            <input type="date" id="date" name="date" required>
+        </fieldset>
+
+        <h2>Quiz Sections</h2>
+        <ul>
+            <li>Section 1: MCQ (10 marks)</li>
+            <li>Section 2: Fill in the blanks (10 marks)</li>
+            <li>Section 3: True/False (10 marks)</li>
+            <li>Section 4: Full Forms (10 marks)</li>
+            <li>Section 5: Short Questions (10 marks; 2 marks each)</li>
+        </ul>
+
+        <h3>Section 1: Multiple Choice Questions (MCQ)</h3>
+
+        <fieldset class="quiz-block">
+            <legend>Question 1: Which is the smallest type of network?</legend>
+            <label><input type="radio" name="mcq1" value="MAN" required> MAN</label>
+            <label><input type="radio" name="mcq1" value="WAN"> WAN</label>
+            <label><input type="radio" name="mcq1" value="PAN"> PAN</label>
+            <label><input type="radio" name="mcq1" value="LAN"> LAN</label>
+        </fieldset>
+
+        <fieldset class="quiz-block">
+            <legend>Question 2: What is the full form of VPN?</legend>
+            <label><input type="radio" name="mcq2" value="Virtual Private Network" required> Virtual Private Network</label>
+            <label><input type="radio" name="mcq2" value="Visual Private Network"> Visual Private Network</label>
+            <label><input type="radio" name="mcq2" value="Virtual Public Network"> Virtual Public Network</label>
+            <label><input type="radio" name="mcq2" value="Verified Private Network"> Verified Private Network</label>
+        </fieldset>
+
+        <fieldset class="quiz-block">
+            <legend>Question 3: What is the purpose of a firewall?</legend>
+            <label><input type="radio" name="mcq3" value="Improve graphics" required> Improve graphics</label>
+            <label><input type="radio" name="mcq3" value="Prevent unauthorized access"> Prevent unauthorized access</label>
+            <label><input type="radio" name="mcq3" value="Increase storage"> Increase storage</label>
+            <label><input type="radio" name="mcq3" value="Print documents"> Print documents</label>
+        </fieldset>
+
+        <fieldset class="quiz-block">
+            <legend>Question 4: What does AI stand for?</legend>
+            <label><input type="radio" name="mcq4" value="Automated Internet" required> Automated Internet</label>
+            <label><input type="radio" name="mcq4" value="Artificial Intelligence"> Artificial Intelligence</label>
+            <label><input type="radio" name="mcq4" value="Advanced Interface"> Advanced Interface</label>
+            <label><input type="radio" name="mcq4" value="Automatic Integration"> Automatic Integration</label>
+        </fieldset>
+
+        <fieldset class="quiz-block">
+            <legend>Question 5: Which data structure follows FIFO?</legend>
+            <label><input type="radio" name="mcq5" value="Queue" required> Queue</label>
+            <label><input type="radio" name="mcq5" value="Stack"> Stack</label>
+            <label><input type="radio" name="mcq5" value="Tree"> Tree</label>
+            <label><input type="radio" name="mcq5" value="Graph"> Graph</label>
+        </fieldset>
+
+        <fieldset class="quiz-block">
+            <legend>Question 6: What is virtualization?</legend>
+            <label><input type="radio" name="mcq6" value="Physical networking" required> Physical networking</label>
+            <label><input type="radio" name="mcq6" value="Creating virtual versions of resources"> Creating virtual versions of resources</label>
+            <label><input type="radio" name="mcq6" value="Formatting drives"> Formatting drives</label>
+            <label><input type="radio" name="mcq6" value="Coding websites"> Coding websites</label>
+        </fieldset>
+
+        <fieldset class="quiz-block">
+            <legend>Question 7: Which layer of the OSI model handles routing?</legend>
+            <label><input type="radio" name="mcq7" value="Physical" required> Physical</label>
+            <label><input type="radio" name="mcq7" value="Data link"> Data link</label>
+            <label><input type="radio" name="mcq7" value="Network"> Network</label>
+            <label><input type="radio" name="mcq7" value="Session"> Session</label>
+        </fieldset>
+
+        <fieldset class="quiz-block">
+            <legend>Question 8: Which language is commonly used to query relational databases?</legend>
+            <label><input type="radio" name="mcq8" value="SQL" required> SQL</label>
+            <label><input type="radio" name="mcq8" value="NoSQL"> NoSQL</label>
+            <label><input type="radio" name="mcq8" value="HTML"> HTML</label>
+            <label><input type="radio" name="mcq8" value="C++"> C++</label>
+        </fieldset>
+
+        <fieldset class="quiz-block">
+            <legend>Question 9: What is phishing?</legend>
+            <label><input type="radio" name="mcq9" value="Data backup" required> Data backup</label>
+            <label><input type="radio" name="mcq9" value="Malware scanning"> Malware scanning</label>
+            <label><input type="radio" name="mcq9" value="Fraudulent attempt to obtain sensitive information"> A fraudulent attempt to obtain sensitive information</label>
+            <label><input type="radio" name="mcq9" value="Network routing"> Network routing</label>
+        </fieldset>
+
+        <fieldset class="quiz-block">
+            <legend>Question 10: What does DNS do?</legend>
+            <label><input type="radio" name="mcq10" value="Stores files" required> Stores files</label>
+            <label><input type="radio" name="mcq10" value="Converts domain names to IP addresses"> Converts domain names to IP addresses</label>
+            <label><input type="radio" name="mcq10" value="Encrypts data"> Encrypts data</label>
+            <label><input type="radio" name="mcq10" value="Sends emails"> Sends emails</label>
+        </fieldset>
+
+        <h3>Section 2: Fill in the Blanks</h3>
+
+        <fieldset class="quiz-block">
+            <legend>Question 1: The process of starting a computer is known as ________.</legend>
+            <textarea name="fill1" id="fill1" rows="1" required></textarea>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 2: A collection of related data organized for easy access is called a ________.</legend>
+            <textarea name="fill2" id="fill2" rows="1" required></textarea>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 3: The protocol used for secure web communication is ________.</legend>
+            <textarea name="fill3" id="fill3" rows="1" required></textarea>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 4: The unique address assigned to a device on a network is called an ________ address.</legend>
+            <textarea name="fill4" id="fill4" rows="1" required></textarea>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 5: The standard language used to query databases is ________.</legend>
+            <textarea name="fill5" id="fill5" rows="1" required></textarea>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 6: The smallest unit of storage in a computer is a ________.</legend>
+            <textarea name="fill6" id="fill6" rows="1" required></textarea>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 7: The process of finding and fixing errors in a program is called ________.</legend>
+            <textarea name="fill7" id="fill7" rows="1" required></textarea>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 8: The default gateway in a network is usually a ________.</legend>
+            <textarea name="fill8" id="fill8" rows="1" required></textarea>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 9: A cyberattack that locks files and demands payment is called ________.</legend>
+            <textarea name="fill9" id="fill9" rows="1" required></textarea>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 10: The binary equivalent of decimal 15 is ________.</legend>
+            <textarea name="fill10" id="fill10" rows="1" required></textarea>
+        </fieldset>
+
+        <h3>Section 3: True/False</h3>
+
+        <fieldset class="quiz-block">
+            <legend>Question 1: HTML is a programming language.</legend>
+            <label><input type="radio" name="tf1" value="true" required> True</label>
+            <label><input type="radio" name="tf1" value="false"> False</label>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 2: CSS is used to style web pages.</legend>
+            <label><input type="radio" name="tf2" value="true" required> True</label>
+            <label><input type="radio" name="tf2" value="false"> False</label>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 3: CPU stands for Central Processing Unit.</legend>
+            <label><input type="radio" name="tf3" value="true" required> True</label>
+            <label><input type="radio" name="tf3" value="false"> False</label>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 4: A monitor is an input device.</legend>
+            <label><input type="radio" name="tf4" value="true" required> True</label>
+            <label><input type="radio" name="tf4" value="false"> False</label>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 5: JavaScript can make web pages interactive.</legend>
+            <label><input type="radio" name="tf5" value="true" required> True</label>
+            <label><input type="radio" name="tf5" value="false"> False</label>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 6: The Internet is a network of networks.</legend>
+            <label><input type="radio" name="tf6" value="true" required> True</label>
+            <label><input type="radio" name="tf6" value="false"> False</label>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 7: A mouse is an output device.</legend>
+            <label><input type="radio" name="tf7" value="true" required> True</label>
+            <label><input type="radio" name="tf7" value="false"> False</label>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 8: Python is a programming language.</legend>
+            <label><input type="radio" name="tf8" value="true" required> True</label>
+            <label><input type="radio" name="tf8" value="false"> False</label>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 9: SSDs are generally faster than HDDs.</legend>
+            <label><input type="radio" name="tf9" value="true" required> True</label>
+            <label><input type="radio" name="tf9" value="false"> False</label>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 10: The Internet and the World Wide Web (WWW) are exactly the same thing.</legend>
+            <label><input type="radio" name="tf10" value="true" required> True</label>
+            <label><input type="radio" name="tf10" value="false"> False</label>
+        </fieldset>
+
+        <h3>Section 4: Full Forms</h3>
+
+        <fieldset class="quiz-block">
+            <legend>Question 1: What is the full form of AGP?</legend>
+            <textarea id="fullform1" name="fullform1" rows="2" required></textarea>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 2: What is the full form of API?</legend>
+            <textarea id="fullform2" name="fullform2" rows="2" required></textarea>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 3: What is the full form of AM?</legend>
+            <textarea id="fullform3" name="fullform3" rows="2" required></textarea>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 4: What is the full form of AMD?</legend>
+            <textarea id="fullform4" name="fullform4" rows="2" required></textarea>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 5: What is the full form of ANN?</legend>
+            <textarea id="fullform5" name="fullform5" rows="2" required></textarea>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 6: What is the full form of CLI?</legend>
+            <textarea id="fullform6" name="fullform6" rows="2" required></textarea>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 7: What is the full form of AVC?</legend>
+            <textarea id="fullform7" name="fullform7" rows="2" required></textarea>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 8: What is the full form of EMI?</legend>
+            <textarea id="fullform8" name="fullform8" rows="2" required></textarea>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 9: What is the full form of HDD?</legend>
+            <textarea id="fullform9" name="fullform9" rows="2" required></textarea>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 10: What is the full form of SSD?</legend>
+            <textarea id="fullform10" name="fullform10" rows="2" required></textarea>
+        </fieldset>
+
+        <h3>Section 5: Short Questions (2 marks each)</h3>
+
+        <fieldset class="quiz-block">
+            <legend>Question 1: Write a short note on Searching.</legend>
+            <textarea id="short1" name="short1" rows="3" required></textarea>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 2: What is the difference between HTML and CSS?</legend>
+            <textarea id="short2" name="short2" rows="3" required></textarea>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 3: What is the main difference between Hardware and Software?</legend>
+            <textarea id="short3" name="short3" rows="3" required></textarea>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 4: Name the two main components of a CPU.</legend>
+            <textarea id="short4" name="short4" rows="3" required></textarea>
+        </fieldset>
+        <fieldset class="quiz-block">
+            <legend>Question 5: Write the names of 7 input devices.</legend>
+            <textarea id="short5" name="short5" rows="3" required></textarea>
+        </fieldset>
+
+        <button type="submit" id="submit-quiz">Submit Quiz</button>
+    </form>
+
+    <section id="result" aria-live="polite" hidden>
+        <h2>Quiz Result</h2>
+        <p id="result-message"></p>
+    </section>
+
+    <footer>
+        <p>Good luck!</p>
+        <p>© 2026 CyberQuest Quiz Platform</p>
+    </footer>
+<!-- Certificate Section -->
+<div id="certificate-modal" style="display: none; margin-top: 30px; padding: 40px; border: 10px solid #1e293b; background: #fff; text-align: center; font-family: 'Georgia', serif; color: #333;">
+    <h1 style="color: #0f172a; margin-bottom: 5px;">CERTIFICATE OF COMPLETION</h1>
+    <p style="font-size: 14px; color: #64748b; letter-spacing: 2px;">CYBERQUEST QUIZ PLATFORM</p>
+    <br>
+    <p style="font-size: 16px;">This is proudly presented to</p>
+    <h2 id="cert-name" style="font-size: 28px; color: #2563eb; border-bottom: 2px solid #cbd5e1; display: inline-block; padding-bottom: 5px; margin: 10px 0;">Candidate Name</h2>
+    <p style="font-size: 16px; margin-top: 15px;">for successfully completing the CyberQuest examination.</p>
+    <p style="font-size: 18px; font-weight: bold; margin-top: 20px;">Score: <span id="cert-score">0</span> / 20 (Objective)</p>
+    <br><br>
+    <div style="display: flex; justify-content: space-between; margin-top: 40px; padding: 0 40px;">
+        <div>___________________<br><small>Date</small></div>
+        <div>___________________<br><small>Authorized Signature</small></div>
+    </div>
+    <br><br>
+    <button onclick="window.print()" style="padding: 10px 20px; background: #2563eb; color: #fff; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">Print / Download Certificate</button>
+</div>
+    <script src="script.js" defer></script>
+</body>
+</html>

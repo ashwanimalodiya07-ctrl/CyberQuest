@@ -1,0 +1,710 @@
+```css
+/* =========================================
+   CYBERQUEST 2.0 - ADMIN DASHBOARD
+   Professional Dark UI
+========================================= */
+
+/* 1. ROOT VARIABLES */
+:root {
+    --bg: #0b1120;
+    --sidebar: #111827;
+    --card: #1e293b;
+    --card-hover: #263449;
+    --primary: #6366f1;
+    --secondary: #a855f7;
+    --success: #22c55e;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --border: rgba(255,255,255,0.1);
+    --input: #0f172a;
+}
+
+/* 2. LIGHT THEME */
+body.light-theme {
+    --bg: #eef2ff;
+    --sidebar: #ffffff;
+    --card: #ffffff;
+    --card-hover: #f1f5f9;
+    --primary: #4f46e5;
+    --secondary: #9333ea;
+    --text: #172033;
+    --muted: #64748b;
+    --border: rgba(0,0,0,0.12);
+    --input: #f1f5f9;
+}
+
+/* 3. RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* 4. HIDDEN ELEMENTS */
+[hidden] {
+    display: none !important;
+}
+
+/* 5. LOGIN PAGE */
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background:
+        radial-gradient(circle at top left, #312e81, transparent 40%),
+        radial-gradient(circle at bottom right, #581c87, transparent 40%),
+        var(--bg);
+}
+
+.login-box {
+    width: 100%;
+    max-width: 430px;
+    padding: 40px 35px;
+    background: rgba(30,41,59,0.95);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    backdrop-filter: blur(15px);
+    animation: loginAppear 0.6s ease;
+}
+
+@keyframes loginAppear {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.logo span {
+    display: block;
+    font-size: 45px;
+}
+
+.logo h1 {
+    font-size: 30px;
+    color: #a5b4fc;
+}
+
+.login-box h2 {
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.login-box > p {
+    text-align: center;
+    color: #94a3b8;
+    margin-bottom: 25px;
+}
+
+/* 6. FORM ELEMENTS */
+label {
+    display: block;
+    margin: 15px 0 7px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 12px 14px;
+    background: var(--input);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+    transition: 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(99,102,241,0.2);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+input::placeholder {
+    color: var(--muted);
+}
+
+/* 7. BUTTONS */
+button {
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+#login-button {
+    width: 100%;
+    margin-top: 25px;
+    padding: 14px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    font-size: 16px;
+}
+
+#login-button:hover {
+    box-shadow: 0 8px 25px rgba(99,102,241,0.4);
+}
+
+.back-button {
+    display: block;
+    text-align: center;
+    margin-top: 25px;
+    color: #a5b4fc;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.back-link:hover {
+    color: white;
+}
+
+#login-error {
+    color: #f87171;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 13px;
+}
+
+/* 8. ADMIN DASHBOARD LAYOUT */
+#admin-dashboard {
+    min-height: 100vh;
+}
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 260px;
+    height: 100vh;
+    padding: 25px 18px;
+    background: var(--sidebar);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    overflow-y: auto;
+}
+
+.sidebar-logo {
+    font-size: 23px;
+    font-weight: bold;
+    color: #a5b4fc;
+    padding: 10px;
+    margin-bottom: 25px;
+}
+
+.admin-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 10px;
+    background: var(--card);
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+.profile-icon {
+    width: 42px;
+    height: 42px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 21px;
+}
+
+.admin-profile h3 {
+    font-size: 14px;
+}
+
+.admin-profile span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* 9. SIDEBAR NAVIGATION */
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.nav-link {
+    display: block;
+    padding: 12px 13px;
+    border-radius: 9px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.25s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: white;
+    background: linear-gradient(135deg, var(--primary), #7c3aed);
+}
+
+.menu-heading {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    margin: 22px 10px 8px;
+}
+
+/* 10. LOGOUT BUTTON */
+.logout-button {
+    width: 100%;
+    padding: 13px;
+    margin-top: auto;
+    background: rgba(239,68,68,0.12);
+    color: #f87171;
+    border-radius: 9px;
+}
+
+.logout-button:hover {
+    background: var(--danger);
+    color: white;
+}
+
+/* 11. MAIN CONTENT */
+.main-content {
+    margin-left: 260px;
+    padding: 30px;
+    min-height: 100vh;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 25px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+.topbar h1 {
+    font-size: 25px;
+    margin-bottom: 3px;
+}
+
+.topbar p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.online-status {
+    color: var(--success);
+    font-size: 13px;
+    font-weight: bold;
+}
+
+#theme-toggle {
+    width: 40px;
+    height: 40px;
+    background: var(--card-hover);
+    color: var(--text);
+    border-radius: 9px;
+    font-size: 18px;
+}
+
+/* 12. PAGE SECTIONS */
+.admin-section {
+    animation: sectionAppear 0.4s ease;
+}
+
+@keyframes sectionAppear {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.admin-section h2 {
+    font-size: 23px;
+    margin-bottom: 22px;
+}
+
+/* 13. STATISTICS CARDS */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.stat-card {
+    padding: 23px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    transition: 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    background: var(--card-hover);
+    border-color: var(--primary);
+}
+
+.stat-card span {
+    font-size: 28px;
+}
+
+.stat-card h3 {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 12px;
+}
+
+.stat-card p {
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 5px;
+    color: #a5b4fc;
+}
+
+/* 14. DASHBOARD CARDS */
+.dashboard-card {
+    padding: 25px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    margin-bottom: 25px;
+}
+
+.dashboard-card h2,
+.dashboard-card h3 {
+    margin-bottom: 20px;
+}
+
+/* 15. TOOLBAR */
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.toolbar input,
+.toolbar select {
+    max-width: 320px;
+}
+
+.toolbar button,
+.dashboard-card form button {
+    padding: 12px 18px;
+    border-radius: 9px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+}
+
+.toolbar button:hover,
+.dashboard-card form button:hover {
+    box-shadow: 0 5px 18px rgba(99,102,241,0.35);
+}
+
+/* 16. TABLES */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+}
+
+thead {
+    background: rgba(99,102,241,0.12);
+}
+
+th,
+td {
+    text-align: left;
+    padding: 14px 13px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+th {
+    color: #a5b4fc;
+    font-weight: bold;
+}
+
+td {
+    color: var(--text);
+}
+
+tbody tr {
+    transition: 0.2s ease;
+}
+
+tbody tr:hover {
+    background: rgba(99,102,241,0.07);
+}
+
+/* 17. STATUS LABELS */
+.status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.status.success {
+    color: #4ade80;
+    background: rgba(34,197,94,0.15);
+}
+
+.status.danger {
+    color: #f87171;
+    background: rgba(239,68,68,0.15);
+}
+
+.status.pending {
+    color: #fbbf24;
+    background: rgba(245,158,11,0.15);
+}
+
+/* 18. QUESTION MANAGEMENT */
+#question-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.question-item {
+    padding: 17px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--input);
+}
+
+.question-item:hover {
+    border-color: var(--primary);
+}
+
+.question-item button {
+    margin: 10px 5px 0 0;
+    padding: 8px 13px;
+    border-radius: 7px;
+    background: var(--primary);
+    color: white;
+}
+
+.question-item .delete-button {
+    background: var(--danger);
+}
+
+/* 19. MODAL */
+#question-modal {
+    border: 1px solid var(--primary);
+    animation: sectionAppear 0.3s ease;
+}
+
+#question-modal form button {
+    margin-top: 15px;
+    margin-right: 8px;
+}
+
+/* 20. CERTIFICATE */
+#certificate-form button {
+    margin-top: 20px;
+}
+
+/* 21. SECURITY */
+.security-warning {
+    color: #fbbf24;
+    background: rgba(245,158,11,0.1);
+    border-left: 4px solid var(--warning);
+    padding: 13px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+/* 22. FOOTER */
+.admin-footer {
+    text-align: center;
+    padding: 25px;
+    margin-top: 40px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* 23. FOCUS ACCESSIBILITY */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid #38bdf8;
+    outline-offset: 3px;
+}
+
+/* 24. TABLET RESPONSIVE */
+@media (max-width: 1100px) {
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sidebar {
+        width: 230px;
+    }
+
+    .main-content {
+        margin-left: 230px;
+        padding: 22px;
+    }
+}
+
+/* 25. MOBILE RESPONSIVE */
+@media (max-width: 700px) {
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        max-height: none;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 15px;
+    }
+
+    .sidebar-nav {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .logout-button {
+        margin-top: 20px;
+    }
+
+    .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .toolbar input,
+    .toolbar select {
+        max-width: none;
+    }
+
+    .toolbar button {
+        width: 100%;
+    }
+
+    .dashboard-card {
+        padding: 17px;
+    }
+
+    .login-box {
+        padding: 30px 22px;
+    }
+}
+
+/* 26. SMALL MOBILE */
+@media (max-width: 400px) {
+
+    .sidebar-nav {
+        grid-template-columns: 1fr;
+    }
+
+    .topbar h1 {
+        font-size: 21px;
+    }
+
+    .stat-card p {
+        font-size: 25px;
+    }
+}
+
+/* 27. REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+```
